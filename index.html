@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Our Team – Manas Koirala</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #f0f2f6; min-height: 100vh; }
+
+  /* ── ALL PAGES HIDDEN BY DEFAULT ── */
+  .page { display: none; }
+
+  /* ── POSTER PAGE ── */
+  #poster-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .poster { width: 100%; max-width: 800px; background: #fff; box-shadow: 0 20px 60px rgba(26,44,78,0.15); }
+  .top-stripe { height: 8px; background: linear-gradient(90deg,#1a2c4e 0%,#2e5082 50%,#c9a84c 100%); }
+  .hero { background: #1a2c4e; padding: 32px 56px 28px; }
+  .tag { display: inline-block; background: #c9a84c; color: #1a2c4e; font-size: 11px; font-weight: bold; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; margin-bottom: 14px; font-family: Arial, sans-serif; }
+  .hero h1 { font-family: Georgia, serif; font-size: 42px; font-weight: bold; color: #fff; line-height: 1.08; }
+  .hero h1 span { color: #c9a84c; }
+  .body { padding: 36px 56px; }
+  .intro-text { font-size: 15px; color: #1a1a1a; line-height: 1.75; margin-bottom: 36px; border-left: 3px solid #c9a84c; padding-left: 20px; font-family: Arial, sans-serif; }
+  .section-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #c9a84c; margin-bottom: 18px; font-family: Arial, sans-serif; font-weight: bold; }
+  .services-grid { display: table; width: 100%; margin-bottom: 36px; border-collapse: separate; border-spacing: 14px 0; }
+  .service-card { display: table-cell; width: 33%; background: #f4f6f9; border-top: 3px solid #1a2c4e; padding: 20px 16px; vertical-align: top; }
+  .service-card .icon { font-size: 24px; margin-bottom: 10px; }
+  .service-card h3 { font-size: 13.5px; font-weight: bold; color: #1a2c4e; margin-bottom: 8px; font-family: Arial, sans-serif; }
+  .service-card p { font-size: 12px; color: #222; line-height: 1.55; font-family: Arial, sans-serif; }
+  .ideal-section { background: #1a2c4e; padding: 28px 32px; margin-bottom: 32px; }
+  .ideal-section .section-title { color: #c9a84c; }
+  .cta { text-align: center; padding: 24px 34px; background: #f4f6f9; border-top: 1px solid #dde3ed; }
+  .cta p { font-size: 14.5px; color: #333; margin-bottom: 6px; font-family: Arial, sans-serif; }
+  .cta .contact-line { font-family: Georgia, serif; font-size: 22px; color: #1a2c4e; font-weight: bold; margin-bottom: 4px; }
+  .cta .email { font-size: 14px; color: #2e5082; font-family: Arial, sans-serif; margin-bottom: 18px; }
+  .cta-btn { display: inline-block; background: #1a2c4e; color: #fff; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; padding: 13px 38px; font-family: Arial, sans-serif; border-bottom: 3px solid #c9a84c; cursor: pointer; border-top: none; border-left: none; border-right: none; }
+  .cta-btn:hover { background: #2e5082; }
+  .bottom-bar { background: #1a2c4e; padding: 13px 56px; text-align: center; }
+  .bottom-bar span { font-size: 13px; color: #fff; font-family: Georgia, serif; }
+  .admin-link { margin-top: 16px; font-size: 12px; font-family: Arial, sans-serif; color: #aaa; cursor: pointer; text-decoration: underline; }
+  .admin-link:hover { color: #c9a84c; }
+
+  /* ── FORM PAGE ── */
+  #form-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .form-card { width: 100%; max-width: 620px; background: #fff; box-shadow: 0 20px 60px rgba(26,44,78,0.12); overflow: hidden; }
+  .form-header { background: #1a2c4e; padding: 32px 40px; }
+  .form-header h2 { font-family: Georgia, serif; font-size: 28px; color: #fff; margin-bottom: 6px; }
+  .form-header p { font-size: 14px; color: #8099b8; font-family: Arial, sans-serif; }
+  .form-body { padding: 36px 40px; }
+  .form-row { margin-bottom: 20px; }
+  .form-row label { display: block; font-size: 12px; font-weight: bold; color: #1a2c4e; text-transform: uppercase; letter-spacing: 1px; font-family: Arial, sans-serif; margin-bottom: 7px; }
+  .form-row input, .form-row select, .form-row textarea { width: 100%; padding: 11px 14px; border: 1px solid #d0d8e8; font-size: 14px; font-family: Arial, sans-serif; color: #222; outline: none; background: #fff; transition: border-color 0.2s; }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: #1a2c4e; }
+  .form-row textarea { resize: vertical; min-height: 90px; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .cv-upload { border: 2px dashed #c9a84c; padding: 24px; text-align: center; cursor: pointer; background: #fffdf5; transition: background 0.2s; }
+  .cv-upload:hover { background: #fdf5de; }
+  .cv-upload input { display: none; }
+  .cv-upload .upload-icon { font-size: 32px; }
+  .cv-upload p { font-size: 13px; color: #555; font-family: Arial, sans-serif; margin-top: 8px; }
+  .cv-filename { font-size: 13px; color: #1a2c4e; font-family: Arial, sans-serif; margin-top: 8px; font-weight: bold; }
+  .submit-btn { width: 100%; background: #1a2c4e; color: #fff; border: none; padding: 15px; font-size: 13px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; cursor: pointer; border-bottom: 3px solid #c9a84c; margin-top: 8px; }
+  .submit-btn:hover { background: #2e5082; }
+  .back-link { margin-top: 16px; font-size: 13px; font-family: Arial, sans-serif; color: #888; cursor: pointer; }
+  .back-link:hover { color: #1a2c4e; }
+  .form-error { background: #fdf0f0; border-left: 3px solid #cc3333; padding: 10px 14px; font-size: 13px; color: #cc3333; font-family: Arial, sans-serif; margin-bottom: 12px; display: none; }
+  .success-box { text-align: center; padding: 48px 40px; }
+  .success-box .checkmark { font-size: 56px; margin-bottom: 16px; }
+  .success-box h3 { font-family: Georgia, serif; font-size: 26px; color: #1a2c4e; margin-bottom: 10px; }
+  .success-box p { font-size: 14px; color: #555; font-family: Arial, sans-serif; line-height: 1.6; }
+  .success-box .back-btn { display: inline-block; margin-top: 24px; background: #1a2c4e; color: #fff; padding: 12px 32px; font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; cursor: pointer; border: none; border-bottom: 3px solid #c9a84c; }
+
+  /* ── LOGIN PAGE ── */
+  #login-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .login-card { width: 100%; max-width: 380px; background: #fff; box-shadow: 0 20px 60px rgba(26,44,78,0.12); overflow: hidden; }
+  .login-header { background: #1a2c4e; padding: 28px 36px; text-align: center; }
+  .login-header h2 { font-family: Georgia, serif; font-size: 22px; color: #fff; }
+  .login-header p { font-size: 13px; color: #8099b8; font-family: Arial, sans-serif; margin-top: 4px; }
+  .login-body { padding: 32px 36px; }
+  .login-error { background: #fdf0f0; border-left: 3px solid #cc3333; padding: 10px 14px; font-size: 13px; color: #cc3333; font-family: Arial, sans-serif; margin-bottom: 16px; display: none; }
+  .login-btn { width: 100%; background: #1a2c4e; color: #fff; border: none; padding: 13px; font-size: 13px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; cursor: pointer; border-bottom: 3px solid #c9a84c; margin-top: 4px; }
+
+  /* ── ADMIN PAGE ── */
+  #admin-page { display: none; padding: 30px 20px; }
+  .admin-wrap { max-width: 1100px; margin: 0 auto; }
+  .admin-header { background: #1a2c4e; padding: 24px 36px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .admin-header h2 { font-family: Georgia, serif; font-size: 24px; color: #fff; }
+  .admin-header .sub { font-size: 13px; color: #c9a84c; font-family: Arial, sans-serif; }
+  .admin-back { font-size: 12px; color: #c9a84c; font-family: Arial, sans-serif; cursor: pointer; text-decoration: underline; }
+  .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
+  .stat-card { background: #fff; padding: 20px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .stat-card .num { font-family: Georgia, serif; font-size: 36px; color: #1a2c4e; font-weight: bold; }
+  .stat-card .lbl { font-size: 12px; color: #888; font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+  .applications-table { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.07); overflow: hidden; }
+  .table-header { background: #1a2c4e; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .table-header h3 { font-family: Georgia, serif; font-size: 18px; color: #fff; }
+  .export-btn { background: #c9a84c; color: #1a2c4e; border: none; padding: 8px 20px; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; font-family: Arial, sans-serif; cursor: pointer; }
+  .tbl-wrap { overflow-x: auto; }
+  table.apps { width: 100%; border-collapse: collapse; min-width: 700px; }
+  table.apps thead th { background: #f4f6f9; font-size: 11px; color: #1a2c4e; font-family: Arial, sans-serif; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; padding: 12px 14px; text-align: left; border-bottom: 2px solid #dde3ed; }
+  table.apps tbody tr { border-bottom: 1px solid #eef0f5; }
+  table.apps tbody tr:hover { background: #fafbfd; }
+  table.apps tbody td { padding: 12px 14px; font-size: 13px; color: #333; font-family: Arial, sans-serif; vertical-align: top; }
+  .badge { display: inline-block; padding: 3px 10px; font-size: 11px; font-weight: bold; font-family: Arial, sans-serif; }
+  .badge-new { background: #e8f4fd; color: #1a6ca8; }
+  .badge-cv { background: #edfaed; color: #1a7a1a; cursor: pointer; }
+  .badge-cv:hover { background: #d4f4d4; }
+  .badge-nocv { background: #f5f5f5; color: #999; }
+  .no-apps { text-align: center; padding: 56px 20px; color: #aaa; font-family: Arial, sans-serif; font-size: 15px; }
+  .delete-btn { background: none; border: none; color: #cc3333; cursor: pointer; font-size: 13px; font-family: Arial, sans-serif; padding: 2px 6px; }
+  .delete-btn:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 24px 24px 20px; }
+    .hero h1 { font-size: 28px; }
+    .body { padding: 24px; }
+    .services-grid { display: block; }
+    .service-card { display: block; width: 100%; margin-bottom: 12px; }
+    .form-row-2 { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ POSTER -->
+<div id="poster-page" class="page">
+  <div class="poster">
+    <div class="top-stripe"></div>
+    <div class="hero">
+      <div class="tag">Now Recruiting</div>
+      <h1>Build Your Career<br>in <span>Finance</span><br>&amp; Insurance.</h1>
+    </div>
+    <div class="body">
+      <p class="intro-text">We are expanding our team and looking for motivated, client-focused individuals to join us as Licensed Insurance &amp; Financial Advisors. Whether you're new to the industry or looking to level up, we offer full support, training, and mentorship to help you thrive.</p>
+
+      <div class="section-title">What You'll Offer Clients</div>
+      <div class="services-grid">
+        <div class="service-card"><div class="icon">🏠</div><h3>Residential Secured Lending</h3><p>Mortgages, HELOCs, and home financing solutions for Canadians.</p></div>
+        <div class="service-card"><div class="icon">📈</div><h3>Investments</h3><p>TFSA, RRSP, FHSA, RESP — helping clients grow and protect wealth.</p></div>
+        <div class="service-card"><div class="icon">🛡️</div><h3>Insurance</h3><p>Life, Critical Illness, Health, and Visitor/Supervisa coverage.</p></div>
+      </div>
+
+      <div class="perks-section" style="margin-bottom:36px;">
+        <div class="section-title">Why Join Us</div>
+        <table style="width:100%;border-collapse:separate;border-spacing:0 10px;">
+          <tr>
+            <td style="width:50%;padding:14px 16px;border:1px solid #e2e8f0;vertical-align:top;"><strong style="display:block;font-size:13px;color:#1a2c4e;margin-bottom:3px;font-family:Arial,sans-serif;">Competitive Commission Structure</strong><span style="font-size:12px;color:#333;font-family:Arial,sans-serif;">Uncapped earnings with performance bonuses and residual income.</span></td>
+            <td style="width:50%;padding:14px 16px;border:1px solid #e2e8f0;vertical-align:top;"><strong style="display:block;font-size:13px;color:#1a2c4e;margin-bottom:3px;font-family:Arial,sans-serif;">Full Mentorship &amp; Training</strong><span style="font-size:12px;color:#333;font-family:Arial,sans-serif;">Step-by-step guidance whether you're licensed or just starting out.</span></td>
+          </tr>
+          <tr>
+            <td style="width:50%;padding:14px 16px;border:1px solid #e2e8f0;vertical-align:top;"><strong style="display:block;font-size:13px;color:#1a2c4e;margin-bottom:3px;font-family:Arial,sans-serif;">Flexible Schedule</strong><span style="font-size:12px;color:#333;font-family:Arial,sans-serif;">Work at your own pace — in-office, remote, or hybrid.</span></td>
+            <td style="width:50%;padding:14px 16px;border:1px solid #e2e8f0;vertical-align:top;"><strong style="display:block;font-size:13px;color:#1a2c4e;margin-bottom:3px;font-family:Arial,sans-serif;">Licensing Support</strong><span style="font-size:12px;color:#333;font-family:Arial,sans-serif;">We help you get licensed and registered if you aren't already.</span></td>
+          </tr>
+          <tr>
+            <td style="width:50%;padding:14px 16px;border:1px solid #e2e8f0;vertical-align:top;"><strong style="display:block;font-size:13px;color:#1a2c4e;margin-bottom:3px;font-family:Arial,sans-serif;">Growing Client Base</strong><span style="font-size:12px;color:#333;font-family:Arial,sans-serif;">Access to an established network and warm referrals to kick-start your book.</span></td>
+            <td style="width:50%;padding:14px 16px;border:1px solid #e2e8f0;vertical-align:top;"><strong style="display:block;font-size:13px;color:#1a2c4e;margin-bottom:3px;font-family:Arial,sans-serif;">Career Advancement</strong><span style="font-size:12px;color:#333;font-family:Arial,sans-serif;">Clear path to senior advisor and team lead roles as you grow.</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="ideal-section">
+        <div class="section-title">Who We're Looking For</div>
+        <table style="width:100%;">
+          <tr>
+            <td style="width:50%;font-size:13px;color:rgba(255,255,255,0.85);padding:5px 0 5px 20px;font-family:Arial,sans-serif;"><span style="color:#c9a84c;">→</span> Strong communication skills</td>
+            <td style="width:50%;font-size:13px;color:rgba(255,255,255,0.85);padding:5px 0 5px 20px;font-family:Arial,sans-serif;"><span style="color:#c9a84c;">→</span> Self-motivated &amp; goal-oriented</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:rgba(255,255,255,0.85);padding:5px 0 5px 20px;font-family:Arial,sans-serif;"><span style="color:#c9a84c;">→</span> Interest in finance or insurance</td>
+            <td style="font-size:13px;color:rgba(255,255,255,0.85);padding:5px 0 5px 20px;font-family:Arial,sans-serif;"><span style="color:#c9a84c;">→</span> Honest and client-first mindset</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:rgba(255,255,255,0.85);padding:5px 0 5px 20px;font-family:Arial,sans-serif;"><span style="color:#c9a84c;">→</span> Existing license is a plus</td>
+            <td style="font-size:13px;color:rgba(255,255,255,0.85);padding:5px 0 5px 20px;font-family:Arial,sans-serif;"><span style="color:#c9a84c;">→</span> Bilingual candidates welcome</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p>Ready to take the next step? Reach out today.</p>
+      <div class="contact-line">+1 (343) 558-6502</div>
+      <div class="email">manaskoirala33@gmail.com</div>
+      <br>
+      <button class="cta-btn" onclick="goTo('form')">Apply Now →</button>
+    </div>
+    <div class="bottom-bar"><span>Manas Koirala · Licensed Insurance Advisor</span></div>
+  </div>
+  <div class="admin-link" onclick="goTo('login')">Admin / View Applications</div>
+</div>
+
+<!-- ════════════ FORM -->
+<div id="form-page" class="page">
+  <div class="form-card">
+    <div class="form-header">
+      <h2>Apply for a Position</h2>
+      <p>Manas Koirala · Licensed Insurance Advisor · Ottawa, ON</p>
+    </div>
+    <div id="form-body-wrap">
+      <div class="form-body">
+        <div class="form-row-2">
+          <div class="form-row" style="margin-bottom:0"><label>First Name *</label><input type="text" id="f-fname" placeholder="John"></div>
+          <div class="form-row" style="margin-bottom:0"><label>Last Name *</label><input type="text" id="f-lname" placeholder="Smith"></div>
+        </div>
+        <div style="height:20px"></div>
+        <div class="form-row"><label>Email Address *</label><input type="email" id="f-email" placeholder="john@email.com"></div>
+        <div class="form-row"><label>Phone / WhatsApp *</label><input type="tel" id="f-phone" placeholder="+1 (555) 000-0000"></div>
+        <div class="form-row"><label>City / Location</label><input type="text" id="f-city" placeholder="Ottawa, ON"></div>
+        <div class="form-row">
+          <label>Do you currently hold a license?</label>
+          <select id="f-license">
+            <option value="">— Select —</option>
+            <option>Yes – Life Insurance License (LLQP)</option>
+            <option>Yes – Mutual Fund License (MFDA)</option>
+            <option>Yes – Mortgage Agent License</option>
+            <option>Yes – Multiple licenses</option>
+            <option>No – but I'm willing to get licensed</option>
+            <option>No – and I'm not sure yet</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Years of experience in finance or insurance</label>
+          <select id="f-experience">
+            <option value="">— Select —</option>
+            <option>No experience – fresh start</option>
+            <option>Less than 1 year</option>
+            <option>1–3 years</option>
+            <option>3–5 years</option>
+            <option>5+ years</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Why do you want to join our team?</label><textarea id="f-message" placeholder="Tell us about yourself and why this role interests you..."></textarea></div>
+        <div class="form-row">
+          <label>Upload Your CV (PDF, DOC, DOCX — max 5MB)</label>
+          <div class="cv-upload" onclick="document.getElementById('cv-file').click()">
+            <div class="upload-icon">📄</div>
+            <p>Click to browse or drag &amp; drop your CV here</p>
+            <div class="cv-filename" id="cv-name"></div>
+            <input type="file" id="cv-file" accept=".pdf,.doc,.docx" onchange="handleCV(this)">
+          </div>
+        </div>
+        <div class="form-error" id="form-error"></div>
+        <button class="submit-btn" onclick="submitApplication()">Submit Application</button>
+      </div>
+    </div>
+    <div id="success-wrap" style="display:none" class="success-box">
+      <div class="checkmark">✅</div>
+      <h3>Application Submitted!</h3>
+      <p>Thank you for applying. Manas will review your application and be in touch soon.<br><br>
+      <strong>+1 (343) 558-6502</strong> · <strong>manaskoirala33@gmail.com</strong></p>
+      <button class="back-btn" onclick="goTo('poster')">← Back to Poster</button>
+    </div>
+  </div>
+  <div class="back-link" onclick="goTo('poster')">← Back to poster</div>
+</div>
+
+<!-- ════════════ LOGIN -->
+<div id="login-page" class="page">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Admin Access</h2>
+      <p>Enter your password to view applications</p>
+    </div>
+    <div class="login-body">
+      <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
+      <div class="form-row"><label>Password</label><input type="password" id="admin-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <button class="login-btn" onclick="adminLogin()">Access Dashboard</button>
+      <div style="margin-top:16px;text-align:center;"><span class="back-link" onclick="goTo('poster')">← Back to poster</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ ADMIN -->
+<div id="admin-page" class="page">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <div>
+        <h2>Applications Dashboard</h2>
+        <div class="sub">Manas Koirala · Insurance Advisor Recruitment</div>
+      </div>
+      <span class="admin-back" onclick="goTo('poster')">← Back to poster</span>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="num" id="stat-total">0</div><div class="lbl">Total Applications</div></div>
+      <div class="stat-card"><div class="num" id="stat-cv">0</div><div class="lbl">With CV Uploaded</div></div>
+      <div class="stat-card"><div class="num" id="stat-licensed">0</div><div class="lbl">Already Licensed</div></div>
+    </div>
+    <div class="applications-table">
+      <div class="table-header">
+        <h3>All Applications</h3>
+        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+      <div class="tbl-wrap" id="apps-container"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG ──────────────────────────────────────────────────────
+  const ADMIN_PASSWORD = "Manas2024!";
+  let cvFileData = null, cvFileName = null;
+
+  // ── PAGE DISPLAY TYPES ──────────────────────────────────────────
+  const DISPLAY = {
+    poster: { id: 'poster-page', type: 'flex' },
+    form:   { id: 'form-page',   type: 'flex' },
+    login:  { id: 'login-page',  type: 'flex' },
+    admin:  { id: 'admin-page',  type: 'block' }
+  };
+
+  function goTo(name) {
+    // Hide all
+    Object.values(DISPLAY).forEach(p => {
+      document.getElementById(p.id).style.display = 'none';
+    });
+    // Show target with correct display type
+    const target = DISPLAY[name];
+    const el = document.getElementById(target.id);
+    el.style.display = target.type;
+    // Extra flex properties for centering pages
+    if (target.type === 'flex') {
+      el.style.flexDirection = 'column';
+      el.style.alignItems = 'center';
+      if (name === 'login') el.style.justifyContent = 'center';
+    }
+    window.scrollTo(0, 0);
+    if (name === 'admin') renderAdmin();
+  }
+
+  // ── CV UPLOAD ────────────────────────────────────────────────────
+  function handleCV(input) {
+    const file = input.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); return; }
+    cvFileName = file.name;
+    document.getElementById('cv-name').textContent = '✓ ' + file.name;
+    const reader = new FileReader();
+    reader.onload = e => { cvFileData = e.target.result; };
+    reader.readAsDataURL(file);
+  }
+
+  // ── SUBMIT ───────────────────────────────────────────────────────
+  async function submitApplication() {
+    const fname   = document.getElementById('f-fname').value.trim();
+    const lname   = document.getElementById('f-lname').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const errEl   = document.getElementById('form-error');
+
+    if (!fname || !lname || !email || !phone) {
+      errEl.textContent = 'Please fill in all required fields (First Name, Last Name, Email, Phone).';
+      errEl.style.display = 'block'; return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block'; return;
+    }
+    errEl.style.display = 'none';
+
+    const app = {
+      id: Date.now(),
+      submittedAt: new Date().toLocaleString('en-CA', { dateStyle: 'medium', timeStyle: 'short' }),
+      firstName:  fname,
+      lastName:   lname,
+      email, phone,
+      city:       document.getElementById('f-city').value.trim(),
+      license:    document.getElementById('f-license').value,
+      experience: document.getElementById('f-experience').value,
+      message:    document.getElementById('f-message').value.trim(),
+      cvFileName: cvFileName || null,
+      cvData:     cvFileData || null
+    };
+
+    try {
+      let apps = [];
+      try {
+        const d = await window.storage.get('applications');
+        if (d) apps = JSON.parse(d.value);
+      } catch(e) {}
+      apps.unshift(app);
+      await window.storage.set('applications', JSON.stringify(apps));
+    } catch(e) { console.error('Storage error:', e); }
+
+    // Show success, hide form
+    document.getElementById('form-body-wrap').style.display = 'none';
+    document.getElementById('success-wrap').style.display = 'block';
+
+    // Reset
+    ['f-fname','f-lname','f-email','f-phone','f-city','f-message'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-license').value = '';
+    document.getElementById('f-experience').value = '';
+    document.getElementById('cv-name').textContent = '';
+    document.getElementById('cv-file').value = '';
+    cvFileData = null; cvFileName = null;
+  }
+
+  // ── ADMIN LOGIN ──────────────────────────────────────────────────
+  function adminLogin() {
+    const pw = document.getElementById('admin-pw').value;
+    if (pw === ADMIN_PASSWORD) {
+      document.getElementById('login-error').style.display = 'none';
+      document.getElementById('admin-pw').value = '';
+      goTo('admin');
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  // ── RENDER ADMIN ─────────────────────────────────────────────────
+  async function renderAdmin() {
+    let apps = [];
+    try {
+      const d = await window.storage.get('applications');
+      if (d) apps = JSON.parse(d.value);
+    } catch(e) {}
+
+    document.getElementById('stat-total').textContent = apps.length;
+    document.getElementById('stat-cv').textContent = apps.filter(a => a.cvFileName).length;
+    document.getElementById('stat-licensed').textContent = apps.filter(a => a.license && a.license.startsWith('Yes')).length;
+
+    const c = document.getElementById('apps-container');
+    if (apps.length === 0) {
+      c.innerHTML = '<div class="no-apps">No applications yet. Share your poster to start receiving applicants! 🚀</div>';
+      return;
+    }
+    c.innerHTML = `<table class="apps">
+      <thead><tr>
+        <th>#</th><th>Name</th><th>Contact</th><th>City</th>
+        <th>License</th><th>Experience</th><th>CV</th><th>Date</th><th>Message</th><th></th>
+      </tr></thead>
+      <tbody>
+        ${apps.map((a, i) => `<tr>
+          <td><span class="badge badge-new">#${apps.length - i}</span></td>
+          <td><strong>${a.firstName} ${a.lastName}</strong></td>
+          <td><div>${a.email}</div><div style="color:#888;font-size:12px;">${a.phone}</div></td>
+          <td>${a.city || '—'}</td>
+          <td style="font-size:12px;">${a.license || '—'}</td>
+          <td style="font-size:12px;">${a.experience || '—'}</td>
+          <td>${a.cvFileName
+            ? `<span class="badge badge-cv" onclick="downloadCV(${a.id})" title="Click to download">⬇ ${a.cvFileName}</span>`
+            : `<span class="badge badge-nocv">None</span>`}</td>
+          <td style="font-size:12px;white-space:nowrap;">${a.submittedAt}</td>
+          <td style="max-width:180px;font-size:12px;color:#555;">${a.message ? a.message.substring(0,80) + (a.message.length > 80 ? '…' : '') : '—'}</td>
+          <td><button class="delete-btn" onclick="deleteApp(${a.id})">✕</button></td>
+        </tr>`).join('')}
+      </tbody></table>`;
+  }
+
+  async function downloadCV(id) {
+    let apps = [];
+    try { const d = await window.storage.get('applications'); if (d) apps = JSON.parse(d.value); } catch(e) {}
+    const a = apps.find(x => x.id === id);
+    if (!a || !a.cvData) { alert('CV not found.'); return; }
+    const link = document.createElement('a');
+    link.href = a.cvData;
+    link.download = a.cvFileName;
+    link.click();
+  }
+
+  async function deleteApp(id) {
+    if (!confirm('Delete this application? This cannot be undone.')) return;
+    let apps = [];
+    try { const d = await window.storage.get('applications'); if (d) apps = JSON.parse(d.value); } catch(e) {}
+    apps = apps.filter(a => a.id !== id);
+    await window.storage.set('applications', JSON.stringify(apps));
+    renderAdmin();
+  }
+
+  async function exportCSV() {
+    let apps = [];
+    try { const d = await window.storage.get('applications'); if (d) apps = JSON.parse(d.value); } catch(e) {}
+    if (!apps.length) { alert('No applications to export yet.'); return; }
+    const headers = ['#','First Name','Last Name','Email','Phone','City','License','Experience','Message','CV Uploaded','Date'];
+    const rows = apps.map((a, i) => [
+      apps.length - i, a.firstName, a.lastName, a.email, a.phone,
+      a.city || '', a.license || '', a.experience || '',
+      (a.message || '').replace(/,/g, ';').replace(/\n/g, ' '),
+      a.cvFileName ? 'Yes' : 'No', a.submittedAt
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    link.download = 'applications_manas_koirala.csv';
+    link.click();
+  }
+
+  // ── INIT ─────────────────────────────────────────────────────────
+  // When returning to form page, reset its state
+  function showFormFresh() {
+    document.getElementById('form-body-wrap').style.display = 'block';
+    document.getElementById('success-wrap').style.display = 'none';
+    goTo('form');
+  }
+  // Override Apply Now and back buttons to use fresh form
+  document.querySelector('.cta-btn').onclick = showFormFresh;
+  document.querySelectorAll('.back-btn').forEach(b => b.onclick = () => goTo('poster'));
+
+  goTo('poster');
+</script>
+</body>
+</html>
